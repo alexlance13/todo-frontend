@@ -32,13 +32,13 @@ export const StyledCardBody = styled(Card.Body)`
     justify-self: center;
     ${(props: PropsType) =>
       props.imgheight / props.imgwidth > 0.9
-        ? `height: 100%; width: auto; max-width: 100%;`
-        : `height: auto; width: 100%; max-height: ${props.imgheight};`}
+        ? `height: 100%; width: auto; max-height: ${props.imgheight}px;`
+        : `height: auto; width: 100%; max-width: ${props.imgwidth}px;`}
     @media (min-width: 720px) and (max-width: 1130px) {
       ${(props: PropsType) =>
         props.imgwidth / props.imgheight > 1.5 || props.isopened
-          ? `height: auto; width: 100%; max-height: ${props.imgheight};`
-          : 'height: 100%; width: auto; max-width: 100%'}
+          ? `height: auto; width: 100%; max-width: ${props.imgwidth}px;`
+          : `height: 100%; width: auto;  max-height: ${props.imgheight}px;`}
     }
   }
 `;
