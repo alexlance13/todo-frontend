@@ -12,7 +12,7 @@ export const StyledCard = styled(Card)`
     box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.5);
   }
   ${(props: StyledCardProps) =>
-    props.isOpened
+    props.isopened
       ? 'position: fixed; top: 0; bottom: 0; right: 0; left: 0; z-index: 999;'
       : 'height: 400px; margin: 20px !important;'}
   @media (max-width: 1130px) {
@@ -31,11 +31,13 @@ export const StyledCardBody = styled(Card.Body)`
   img {
     justify-self: center;
     ${(props: PropsType) =>
-      props.imgHeight / props.imgWidth > 0.9 ? 'height: 100%; width: auto; max-width: 100%' : 'height: auto; width: 100%;'}
-    @media (min-width: 1500px), (min-width: 720px) and (max-width: 1130px) {
+      props.imgheight / props.imgwidth > 0.9
+        ? `height: 100%; width: auto; max-width: 100%;`
+        : `height: auto; width: 100%; max-height: ${props.imgheight};`}
+    @media (min-width: 720px) and (max-width: 1130px) {
       ${(props: PropsType) =>
-        props.imgWidth / props.imgHeight > 1.5 || props.isOpened
-          ? 'height: auto; width: 100%;'
+        props.imgwidth / props.imgheight > 1.5 || props.isopened
+          ? `height: auto; width: 100%; max-height: ${props.imgheight};`
           : 'height: 100%; width: auto; max-width: 100%'}
     }
   }
@@ -55,11 +57,11 @@ export const StyledButton = styled(Button)`
 `;
 
 interface PropsType {
-  imgWidth: number;
-  imgHeight: number;
-  isOpened: boolean;
+  imgwidth: number;
+  imgheight: number;
+  isopened: boolean;
 }
 
 type StyledCardProps = {
-  isOpened: boolean;
+  isopened: boolean;
 };

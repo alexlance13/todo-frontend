@@ -8,8 +8,9 @@ import Todo from 'components/Todo';
 import { NavLink } from 'react-router-dom';
 import Pagination from 'components/Pagination';
 
-const itemsPerPage = 6;
 const Home: React.FC<PropsType> = ({ getTodos, todos, removeTodo }) => {
+  const itemsPerPage = 6;
+
   const [todosForDisplay, setTodosForDisplay] = useState(todos);
 
   useEffect(() => {
@@ -20,7 +21,7 @@ const Home: React.FC<PropsType> = ({ getTodos, todos, removeTodo }) => {
     <>
       <NavBar />
       <Pagination itemsPerPage={itemsPerPage} data={todos} setChunkOfData={setTodosForDisplay} />
-      <StyledCardDeck itemsPerPage={6}>
+      <StyledCardDeck itemsperpage={6}>
         {todos.length ? (
           todosForDisplay.map((todo: ITodo, i: number) => <Todo removeTodo={removeTodo} todo={todo} key={i} />)
         ) : (

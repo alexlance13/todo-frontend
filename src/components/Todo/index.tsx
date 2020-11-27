@@ -11,15 +11,17 @@ const Todo: React.FC<PropsType> = ({ todo, removeTodo }) => {
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
 
-  const imageUrl = useMemo(() => `${process.env.REACT_APP_API_URL}/tmp/images/${imageName}`, [imageName]);
+  const imageUrl = useMemo(() => (imageName ? `${process.env.REACT_APP_API_URL}/tmp/images/${imageName}` : ''), [imageName]);
 
   useEffect(() => {
-    const img = new Image();
-    img.src = imageUrl;
-    img.onload = () => {
-      setWidth(img.width);
-      setHeight(img.height);
-    };
+    if (imageUrl) {
+      const img = new Image();
+      img.src = imageUrl;
+      img.onload = () => {
+        setWidth(img.width);
+        setHeight(img.height);
+      };
+    }
   }, [imageUrl]);
 
   const onCloseHandler = (event: any) => {
@@ -33,7 +35,7 @@ const Todo: React.FC<PropsType> = ({ todo, removeTodo }) => {
 
   return (
     <>
-      <StyledCard isOpened={isOpened} border={isOpened ? 'primary' : 'light'} onClick={() => setIsOpened(true)}>
+      <StyledCard isopened={isOpened} border={isOpened ? 'primary' : 'light'} onClick={() => setIsOpened(true)}>
         <Card.Header>
           {isOpened ? (
             <StyledButton onClick={onCloseHandler} variant='danger'>
@@ -45,7 +47,7 @@ const Todo: React.FC<PropsType> = ({ todo, removeTodo }) => {
             </StyledButton>
           )}
         </Card.Header>
-        <StyledCardBody isOpened={isOpened} imgWidth={width} imgHeight={height}>
+        <StyledCardBody isopened={isOpened} imgwidth={width} imgheight={height}>
           <Card.Title>{title}</Card.Title>
           <Card.Text>{text}</Card.Text>
           {imageName && <Card.Img src={imageUrl} />}
